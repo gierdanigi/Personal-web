@@ -11,7 +11,7 @@ const NAV = [
   { href: "/admin/profile", label: "프로필", icon: UserRound },
   { href: "/admin/projects", label: "프로젝트", icon: FolderGit2 },
   { href: "/admin/works", label: "작업물", icon: Film },
-  { href: "/admin/commission", label: "커미션 메뉴", icon: ListChecks },
+  { href: "/admin/commission", label: "할 수 있는 작업", icon: ListChecks },
 ];
 
 export function AdminNav({ email }: { email: string }) {

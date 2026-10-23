@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { FolderGit2, Play } from "lucide-react";
-import { CATEGORY_LABEL, type Project, type WorkWithMenu } from "@/lib/types";
+import type { Project, WorkWithMenu } from "@/lib/types";
 import { cn, formatDate, formatPeriod, youTubeThumbnail } from "@/lib/utils";
 
 export function ProjectCard({ project }: { project: Project }) {
@@ -10,7 +10,7 @@ export function ProjectCard({ project }: { project: Project }) {
   const period = formatPeriod(project.period_start, project.period_end, project.is_ongoing);
 
   return (
-    <Link href={`/projects/${project.slug}`} className="card card-hover group flex flex-col overflow-hidden">
+    <Link href={`/projects/${project.slug}`} className="card card-hover group flex h-full flex-col overflow-hidden">
       <div className="relative aspect-[16/9] bg-soft">
         {cover ? (
           <Image
@@ -61,7 +61,7 @@ export function WorkCard({ work, className }: { work: WorkWithMenu; className?: 
   const thumb = workThumbnail(work);
 
   return (
-    <Link href={`/works/${work.slug}`} className={cn("card card-hover group block overflow-hidden", className)}>
+    <Link href={`/works/${work.slug}`} className={cn("card card-hover group block h-full overflow-hidden", className)}>
       <div className="relative aspect-video bg-soft">
         {thumb && (
           <Image
@@ -77,14 +77,6 @@ export function WorkCard({ work, className }: { work: WorkWithMenu; className?: 
             <Play className="size-3.5 fill-current" />
           </span>
         )}
-        <span
-          className={cn(
-            "absolute top-2.5 left-2.5 rounded-full px-2 py-0.5 text-xs font-semibold backdrop-blur",
-            work.category === "video" ? "bg-rose-500/90 text-white" : "bg-sky-500/90 text-white",
-          )}
-        >
-          {CATEGORY_LABEL[work.category]}
-        </span>
       </div>
       <div className="p-4">
         <h3 className="truncate font-bold">{work.title}</h3>

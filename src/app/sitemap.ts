@@ -7,7 +7,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [projects, works] = await Promise.all([getPublicProjects(), getPublicWorks()]);
 
   return [
-    ...["", "/about", "/projects", "/works", "/commission"].map((path) => ({ url: `${base}${path}` })),
+    ...["", "/projects", "/works", "/contact"].map((path) => ({ url: `${base}${path}` })),
     ...projects.map((p) => ({ url: `${base}/projects/${p.slug}`, lastModified: p.updated_at })),
     ...works.map((w) => ({ url: `${base}/works/${w.slug}`, lastModified: w.updated_at })),
   ];

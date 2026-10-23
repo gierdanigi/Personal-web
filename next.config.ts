@@ -15,6 +15,13 @@ const nextConfig: NextConfig = {
       },
     },
   },
+  // 예전 주소로 들어와도 새 페이지로 이동
+  async redirects() {
+    return [
+      { source: "/about", destination: "/", permanent: true },
+      { source: "/commission", destination: "/contact", permanent: true },
+    ];
+  },
   images: {
     remotePatterns: [
       ...(supabaseHost

@@ -3,7 +3,6 @@ import { Plus } from "lucide-react";
 import { reorderWorks, setWorkFlag } from "@/actions/works";
 import { ItemList } from "@/components/admin/ItemList";
 import { adminListMenu, adminListWorks } from "@/lib/admin-queries";
-import { CATEGORY_LABEL } from "@/lib/types";
 import { formatDate, youTubeThumbnail } from "@/lib/utils";
 import { PageHeader } from "../PageHeader";
 
@@ -17,7 +16,7 @@ export default async function AdminWorksPage() {
     <>
       <PageHeader
         title="작업물"
-        description="영상 · 개발 커미션 샘플. 끌어서 순서를 바꾸고, ★로 메인 노출을 정해요."
+        description="영상 작업물. 개발 결과물은 프로젝트에 등록해요. 끌어서 순서를 바꾸고, ★로 메인 노출을 정해요."
         action={
           <Link href="/admin/works/new" className="btn-primary">
             <Plus className="size-4" /> 새로 만들기
@@ -31,7 +30,7 @@ export default async function AdminWorksPage() {
         items={works.map((w) => ({
           id: w.id,
           title: w.title,
-          subtitle: [CATEGORY_LABEL[w.category], w.menu_id && menuName.get(w.menu_id), formatDate(w.work_date)]
+          subtitle: [w.category === "dev" && "⚠️ 개발 분류 (사이트에 안 보임 · 프로젝트로 옮겨 주세요)", w.menu_id && menuName.get(w.menu_id), formatDate(w.work_date)]
             .filter(Boolean)
             .join(" · "),
           thumbnail: w.thumbnail_url ?? youTubeThumbnail(w.video_url),

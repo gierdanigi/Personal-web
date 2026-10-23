@@ -4,12 +4,15 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import type { Project } from "@/lib/types";
 import { EmptyState, ProjectCard } from "./Cards";
 import { FilterChips } from "./FilterChips";
+import { Reveal } from "./Reveal";
 
 export function ProjectGrid({ projects }: { projects: Project[] }) {
   return (
     <div className="grid gap-5 sm:grid-cols-2">
-      {projects.map((p) => (
-        <ProjectCard key={p.id} project={p} />
+      {projects.map((p, i) => (
+        <Reveal key={p.id} delay={(i % 2) * 90} className="h-full">
+          <ProjectCard project={p} />
+        </Reveal>
       ))}
     </div>
   );

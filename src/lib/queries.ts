@@ -65,6 +65,7 @@ export async function getPublicWorks(): Promise<WorkWithMenu[]> {
     .from("works")
     .select(WORK_SELECT)
     .eq("is_public", true)
+    .eq("category", "video")
     .order("sort_order", { ascending: true })
     .order("work_date", { ascending: false, nullsFirst: false });
   if (error) throw new Error(`works 조회 실패: ${error.message}`);

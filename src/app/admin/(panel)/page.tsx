@@ -24,9 +24,9 @@ export default async function AdminHome() {
     },
     {
       href: "/admin/commission",
-      label: "커미션 메뉴",
+      label: "할 수 있는 작업",
       icon: ListChecks,
-      stat: `${menu.length}개 · 접수 중 ${menu.filter((m) => m.is_open).length}개`,
+      stat: `${menu.length}개`,
     },
   ];
 

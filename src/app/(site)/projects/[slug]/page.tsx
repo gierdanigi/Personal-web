@@ -5,6 +5,7 @@ import { Suspense } from "react";
 import { ArrowUpRight, CalendarDays, ChevronLeft, UserRound, Users } from "lucide-react";
 import { SiGithub } from "react-icons/si";
 import { Markdown } from "@/components/Markdown";
+import { Reveal } from "@/components/site/Reveal";
 import { Gallery } from "@/components/site/Gallery";
 import { getProjectBySlug } from "@/lib/queries";
 import { formatPeriod, plainExcerpt } from "@/lib/utils";
@@ -45,65 +46,76 @@ async function ProjectDetail({ params }: Pick<PageProps<"/projects/[slug]">, "pa
   ].filter((l): l is { label: string; url: string; github: boolean } => Boolean(l));
 
   return (
-    <article className="mx-auto max-w-3xl">
-      <Link href="/projects" className="inline-flex items-center gap-0.5 text-sm text-muted hover:text-foreground">
-        <ChevronLeft className="size-4" /> 프로젝트 목록
-      </Link>
+    <Reveal>
+      <article className="mx-auto max-w-3xl">
+        <Link href="/projects" className="inline-flex items-center gap-0.5 text-sm text-muted hover:text-foreground">
+          <ChevronLeft className="size-4" /> 프로젝트 목록
+        </Link>
 
-      <header className="mt-4">
-        <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">{project.title}</h1>
-        {project.summary && <p className="mt-3 text-lg text-foreground/70">{project.summary}</p>}
+        <header className="mt-4">
+          <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">{project.title}</h1>
+          {project.summary && <p className="mt-3 text-lg text-foreground/70">{project.summary}</p>}
 
-        {meta.length > 0 && (
-          <dl className="card mt-6 grid gap-4 p-5 sm:grid-cols-3">
-            {meta.map(({ icon: Icon, label, value }) => (
-              <div key={label}>
-                <dt className="flex items-center gap-1.5 text-xs font-medium text-muted">
-                  <Icon className="size-3.5" /> {label}
-                </dt>
-                <dd className="mt-1 font-semibold">{value}</dd>
-              </div>
-            ))}
-          </dl>
-        )}
+          {meta.length > 0 && (
+            <dl className="card mt-6 grid gap-4 p-5 sm:grid-cols-3">
+              {meta.map(({ icon: Icon, label, value }) => (
+                <div key={label}>
+                  <dt className="flex items-center gap-1.5 text-xs font-medium text-muted">
+                    <Icon className="size-3.5" /> {label}
+                  </dt>
+                  <dd className="mt-1 font-semibold">{value}</dd>
+                </div>
+              ))}
+            </dl>
+          )}
 
-        {project.tech_stack.length > 0 && (
-          <ul className="mt-4 flex flex-wrap gap-1.5">
-            {project.tech_stack.map((t) => (
-              <li key={t}>
-                <Link href={`/projects?tech=${encodeURIComponent(t)}`} className="tag bg-accent-soft px-3 py-1 text-sm text-accent hover:bg-accent/15">
-                  {t}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        )}
+          {project.tech_stack.length > 0 && (
+            <ul className="mt-4 flex flex-wrap gap-1.5">
+              {project.tech_stack.map((t) => (
+                <li key={t}>
+                  <Link
+                    href={`/projects?tech=${encodeURIComponent(t)}`}
+                    className="tag bg-accent-soft px-3 py-1 text-sm text-accent hover:bg-accent/15"
+                  >
+                    {t}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
 
-        {links.length > 0 && (
-          <div className="mt-5 flex flex-wrap gap-2">
-            {links.map((l, i) => (
-              <a key={`${l.url}-${i}`} href={l.url} target="_blank" rel="noreferrer" className={i === 0 ? "btn-primary" : "btn-outline"}>
-                {l.github && <SiGithub className="size-4" />}
-                {l.label}
-                {!l.github && <ArrowUpRight className="size-4" />}
-              </a>
-            ))}
+          {links.length > 0 && (
+            <div className="mt-5 flex flex-wrap gap-2">
+              {links.map((l, i) => (
+                <a
+                  key={`${l.url}-${i}`}
+                  href={l.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={i === 0 ? "btn-primary" : "btn-outline"}
+                >
+                  {l.github && <SiGithub className="size-4" />}
+                  {l.label}
+                  {!l.github && <ArrowUpRight className="size-4" />}
+                </a>
+              ))}
+            </div>
+          )}
+        </header>
+
+        {project.images.length > 0 && (
+          <div className="mt-10">
+            <Gallery images={project.images} title={project.title} />
           </div>
         )}
-      </header>
 
-      {project.images.length > 0 && (
-        <div className="mt-10">
-          <Gallery images={project.images} title={project.title} />
-        </div>
-      )}
-
-      {project.description.trim() && (
-        <div className="card mt-10 p-6 sm:p-10">
-          <Markdown>{project.description}</Markdown>
-        </div>
-      )}
-    </article>
+        {project.description.trim() && (
+          <div className="card mt-10 p-6 sm:p-10">
+            <Markdown>{project.description}</Markdown>
+          </div>
+        )}
+      </article>
+    </Reveal>
   );
 }
 

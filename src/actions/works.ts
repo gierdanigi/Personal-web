@@ -19,14 +19,11 @@ export async function saveWork(input: WorkInput): Promise<ActionResult<{ id: str
   if (!SLUG_PATTERN.test(slug)) {
     return { ok: false, error: "slug는 영문 소문자, 숫자, 하이픈(-)만 쓸 수 있어요." };
   }
-  if (input.category !== "video" && input.category !== "dev") {
-    return { ok: false, error: "카테고리를 선택해 주세요." };
-  }
-
   const row = {
     title,
     slug,
-    category: input.category,
+    // 작업물은 영상 전용 (개발 결과물은 프로젝트로 등록)
+    category: "video" as const,
     menu_id: nullable(input.menu_id),
     thumbnail_url: nullable(input.thumbnail_url),
     thumbnail_path: nullable(input.thumbnail_path),

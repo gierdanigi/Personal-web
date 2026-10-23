@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ExternalLink } from "lucide-react";
 import { saveWork, type WorkInput } from "@/actions/works";
-import { CATEGORY_LABEL, type Category, type CommissionMenu, type Work } from "@/lib/types";
+import type { CommissionMenu, Work } from "@/lib/types";
 import { getYouTubeId, slugify, youTubeThumbnail } from "@/lib/utils";
 import { Field, Section, TagInput, Toggle } from "./fields";
 import { SingleImageField } from "./ImageFields";
@@ -43,7 +43,7 @@ export function WorkForm({
   const form = useSaveForm<WorkInput>(initial);
   const { value: v, set } = form;
   const isNew = !work;
-  const menuOptions = menu.filter((m) => m.category === v.category);
+  const menuOptions = menu.filter((m) => m.category === "video");
   const youtubeId = getYouTubeId(v.video_url);
   const autoThumb = youTubeThumbnail(v.video_url);
 
@@ -92,29 +92,8 @@ export function WorkForm({
             onChange={(e) => set("slug", e.target.value.toLowerCase().replace(/\s+/g, "-"))}
           />
         </Field>
-        <div className="grid gap-4 sm:grid-cols-3">
-          <Field label="카테고리">
-            <select
-              className="input"
-              value={v.category}
-              onChange={(e) => {
-                const category = e.target.value as Category;
-                form.setValue((p) => ({
-                  ...p,
-                  category,
-                  // 다른 카테고리의 메뉴가 선택돼 있으면 해제
-                  menu_id: menu.find((m) => m.id === p.menu_id)?.category === category ? p.menu_id : null,
-                }));
-              }}
-            >
-              {(Object.keys(CATEGORY_LABEL) as Category[]).map((c) => (
-                <option key={c} value={c}>
-                  {CATEGORY_LABEL[c]}
-                </option>
-              ))}
-            </select>
-          </Field>
-          <Field label="커미션 메뉴 (세부 분류)">
+        <div className="grid gap-4 sm:grid-cols-2">
+          <Field label="분류" hint="'할 수 있는 작업'의 영상 항목 중 하나">
             <select className="input" value={v.menu_id ?? ""} onChange={(e) => set("menu_id", e.target.value || null)}>
               <option value="">선택 안 함</option>
               {menuOptions.map((m) => (
