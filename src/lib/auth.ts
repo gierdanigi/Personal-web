@@ -1,5 +1,6 @@
 import "server-only";
 import { redirect } from "next/navigation";
+import { connection } from "next/server";
 import { createClient } from "./supabase/server";
 import { isSupabaseConfigured } from "./supabase/env";
 
@@ -10,6 +11,8 @@ export function isAdminEmail(email: string | null | undefined) {
 
 /** 현재 로그인한 관리자. 관리자가 아니면 null */
 export async function getAdmin() {
+  // 항상 요청 시점에 세션을 확인 (빌드 때 정적으로 굳지 않도록)
+  await connection();
   if (!isSupabaseConfigured) return null;
   const supabase = await createClient();
   const {
