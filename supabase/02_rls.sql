@@ -24,6 +24,13 @@ $$;
 revoke all on function public.is_admin() from public;
 grant execute on function public.is_admin() to anon, authenticated;
 
+-- Data API 권한 (프로젝트 생성 시 "Automatically expose new tables"를 꺼도 동작하도록 명시)
+-- 실제로 어떤 행을 읽고 쓸 수 있는지는 아래 RLS 정책이 결정함
+grant usage on schema public to anon, authenticated;
+grant select on public.profile, public.commission_menu, public.projects, public.works to anon, authenticated;
+grant insert, update, delete on public.profile, public.commission_menu, public.projects, public.works to authenticated;
+revoke all on public.admins from anon, authenticated;
+
 alter table public.admins          enable row level security;
 alter table public.profile         enable row level security;
 alter table public.commission_menu enable row level security;
