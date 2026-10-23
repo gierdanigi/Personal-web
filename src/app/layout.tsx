@@ -17,11 +17,11 @@ export async function generateMetadata(): Promise<Metadata> {
   cacheLife("days");
   const profile = await getProfile();
   const siteName = profile.nickname || profile.name || "Portfolio";
-  const description = profile.headline || "영상 편집 · 웹 개발 포트폴리오 & 커미션";
+  const description = profile.headline || "영상 편집 · 웹 개발 포트폴리오";
 
   return {
     metadataBase: new URL(siteUrl()),
-    title: { default: `${siteName} — 포트폴리오 · 커미션`, template: `%s | ${siteName}` },
+    title: { default: `${siteName} — 포트폴리오`, template: `%s | ${siteName}` },
     description,
     openGraph: {
       type: "website",

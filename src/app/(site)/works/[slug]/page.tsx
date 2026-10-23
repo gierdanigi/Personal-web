@@ -107,7 +107,7 @@ async function WorkDetail({ params }: Pick<PageProps<"/works/[slug]">, "params">
                 결과물 보러 가기 <ArrowUpRight className="size-4" />
               </a>
             )}
-            <Link href="/contact" className="card card-hover block bg-accent-soft/60 p-5">
+            <Link href="/#contact" className="card card-hover block bg-accent-soft/60 p-5">
               <p className="text-sm font-semibold">이런 작업이 필요하신가요?</p>
               <p className="mt-1 inline-flex items-center gap-1 text-sm text-accent">
                 문의하기 <ArrowRight className="size-4" />

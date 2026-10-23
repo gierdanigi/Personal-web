@@ -26,7 +26,7 @@ const EMPTY: WorkInput = {
   tools: [],
   work_date: null,
   is_featured: false,
-  is_public: false,
+  is_public: true,
 };
 
 export function WorkForm({
@@ -93,7 +93,7 @@ export function WorkForm({
           />
         </Field>
         <div className="grid gap-4 sm:grid-cols-2">
-          <Field label="분류" hint="'할 수 있는 작업'의 영상 항목 중 하나">
+          <Field label="분류" hint="'작업물 분류' 메뉴에서 관리">
             <select className="input" value={v.menu_id ?? ""} onChange={(e) => set("menu_id", e.target.value || null)}>
               <option value="">선택 안 함</option>
               {menuOptions.map((m) => (

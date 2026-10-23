@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { getProfile } from "@/lib/queries";
-import { ContactButtons, SocialLinks } from "./SocialLinks";
+import { SocialLinks } from "./SocialLinks";
 import { NAV_ITEMS } from "@/lib/nav";
 
 export async function Footer() {
@@ -16,9 +16,7 @@ export async function Footer() {
           <SocialLinks links={profile.links} className="mt-4" />
         </div>
         <div className="md:text-right">
-          <p className="text-sm font-semibold">문의</p>
-          <ContactButtons links={profile.links} size="sm" className="mt-3 md:justify-end" />
-          <nav className="mt-6 flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted md:justify-end">
+          <nav className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted md:justify-end">
             {NAV_ITEMS.map(({ href, label }) => (
               <Link key={href} href={href} className="hover:text-foreground">
                 {label}

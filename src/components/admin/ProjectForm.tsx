@@ -45,7 +45,7 @@ const EMPTY: ProjectInput = {
   demo_url: null,
   etc_links: [],
   is_featured: false,
-  is_public: false,
+  is_public: true,
 };
 
 export function ProjectForm({ project, techSuggestions }: { project?: Project; techSuggestions: string[] }) {

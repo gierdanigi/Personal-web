@@ -24,9 +24,9 @@ export default async function AdminHome() {
     },
     {
       href: "/admin/commission",
-      label: "할 수 있는 작업",
+      label: "작업물 분류",
       icon: ListChecks,
-      stat: `${menu.length}개`,
+      stat: `${menu.filter((m) => m.category === "video").length}개`,
     },
   ];
 

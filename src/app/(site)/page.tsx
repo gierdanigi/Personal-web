@@ -1,6 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
-import { ArrowRight, Award, GraduationCap, Sparkles } from "lucide-react";
+import { Award, GraduationCap, Sparkles } from "lucide-react";
 import { Markdown } from "@/components/Markdown";
 import { ProjectCard, WorkCard } from "@/components/site/Cards";
 import { Reveal } from "@/components/site/Reveal";
@@ -180,15 +179,12 @@ export default async function HomePage() {
 
       {/* 문의 */}
       <Reveal>
-        <section className="card relative overflow-hidden p-8 text-center sm:p-12">
+        <section id="contact" className="card relative scroll-mt-24 overflow-hidden p-8 text-center sm:p-12">
           <div aria-hidden className="pointer-events-none absolute -top-20 left-1/2 size-72 -translate-x-1/2 rounded-full bg-accent-soft blur-3xl" />
           <div className="relative">
-            <h2 className="text-2xl font-bold tracking-tight">함께 작업해요</h2>
+            <h2 className="text-2xl font-bold tracking-tight">문의</h2>
             <p className="mt-2 text-foreground/70">영상 편집 · 개발 작업 문의는 언제든 편하게 연락 주세요.</p>
             <ContactButtons links={profile.links} size="lg" className="mt-6 justify-center" />
-            <Link href="/contact" className="mt-5 inline-flex items-center gap-1 text-sm font-medium text-muted hover:text-accent">
-              할 수 있는 작업 보기 <ArrowRight className="size-4" />
-            </Link>
           </div>
         </section>
       </Reveal>

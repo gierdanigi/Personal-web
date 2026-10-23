@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { getProfile } from "@/lib/queries";
-import { ContactButtons } from "./SocialLinks";
 import { MobileMenu, NavLinks } from "./NavLinks";
 
 export async function Header() {
@@ -13,13 +12,8 @@ export async function Header() {
         <Link href="/" className="shrink-0 text-lg font-bold tracking-tight">
           {siteName}
         </Link>
-        <NavLinks className="hidden md:flex" />
-        <div className="ml-auto hidden md:block">
-          <ContactButtons links={profile.links} size="sm" />
-        </div>
-        <MobileMenu className="ml-auto md:hidden">
-          <ContactButtons links={profile.links} size="md" className="mt-4" />
-        </MobileMenu>
+        <NavLinks className="ml-auto hidden md:flex" />
+        <MobileMenu className="ml-auto md:hidden" />
       </div>
     </header>
   );

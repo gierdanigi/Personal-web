@@ -91,7 +91,7 @@ export function ProfileForm({ profile }: { profile: Profile }) {
 
       <Section
         title="링크"
-        description="오픈채팅 · 디스코드는 헤더, 푸터, 커미션 페이지의 문의 버튼으로도 쓰여요. 디스코드에 아이디를 적으면 클릭 시 복사돼요."
+        description="오픈채팅 · 디스코드는 홈 맨 아래 문의 버튼으로도 쓰여요. 디스코드에 아이디를 적으면 클릭 시 복사돼요."
       >
         <ListEditor<LinkItem>
           items={v.links}

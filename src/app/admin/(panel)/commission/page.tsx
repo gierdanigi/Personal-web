@@ -9,8 +9,8 @@ export default async function AdminCommissionPage() {
   return (
     <>
       <PageHeader
-        title="할 수 있는 작업"
-        description="문의 페이지에 보여줄 작업 종류예요. 영상 항목은 작업물의 세부 분류로도 쓰여요. 마감으로 바꾸면 '마감'으로 표시돼요."
+        title="작업물 분류"
+        description="작업물 페이지의 필터와 카드에 쓰이는 분류예요. 예: 컷편집 · 쇼츠, 가사 PV, 직캠 편집"
       />
       <MenuManager initial={menu} />
     </>
