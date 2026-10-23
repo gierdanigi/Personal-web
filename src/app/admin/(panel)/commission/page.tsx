@@ -10,7 +10,7 @@ export default async function AdminCommissionPage() {
     <>
       <PageHeader
         title="커미션 메뉴"
-        description="메뉴를 눌러 가격 · 기간 · 수정 횟수를 편집해요. 마감으로 바꾸면 사이트에 '마감'으로 표시돼요."
+        description="사이트에 보여줄 작업 종류예요. 메뉴를 눌러 이름 · 설명을 고치고, 마감으로 바꾸면 사이트에 '마감'으로 표시돼요."
       />
       <MenuManager initial={menu} />
     </>

@@ -57,9 +57,6 @@ export type CommissionMenu = {
   category: Category;
   name: string;
   description: string;
-  price_text: string;
-  duration_text: string;
-  revision_text: string;
   sort_order: number;
   is_open: boolean;
 };

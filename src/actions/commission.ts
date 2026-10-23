@@ -20,9 +20,6 @@ export async function saveMenuItem(input: MenuInput): Promise<ActionResult<Commi
     category: input.category,
     name,
     description: str(input.description),
-    price_text: str(input.price_text),
-    duration_text: str(input.duration_text),
-    revision_text: str(input.revision_text),
     is_open: Boolean(input.is_open),
   };
 

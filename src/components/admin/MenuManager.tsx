@@ -78,41 +78,15 @@ function MenuFields({ value, onChange }: { value: MenuInput; onChange: (v: MenuI
       <Field label="메뉴 이름">
         <input className="input" value={value.name} required onChange={(e) => set("name", e.target.value)} />
       </Field>
-      <Field label="설명" hint="줄바꿈이 그대로 보여요.">
+      <Field label="설명 (선택)" hint="한두 줄 정도의 짧은 소개. 비워 둬도 돼요.">
         <textarea
           className="input"
-          rows={3}
+          rows={2}
           value={value.description}
-          placeholder="작업 범위, 포함 사항, 참고 사항 등"
+          placeholder="예: 유튜브 쇼츠 · 방송 클립 편집"
           onChange={(e) => set("description", e.target.value)}
         />
       </Field>
-      <div className="grid gap-3 sm:grid-cols-3">
-        <Field label="가격">
-          <input
-            className="input"
-            value={value.price_text}
-            placeholder="예: 30,000원~"
-            onChange={(e) => set("price_text", e.target.value)}
-          />
-        </Field>
-        <Field label="작업 기간">
-          <input
-            className="input"
-            value={value.duration_text}
-            placeholder="예: 3~7일"
-            onChange={(e) => set("duration_text", e.target.value)}
-          />
-        </Field>
-        <Field label="수정 횟수">
-          <input
-            className="input"
-            value={value.revision_text}
-            placeholder="예: 2회 무료"
-            onChange={(e) => set("revision_text", e.target.value)}
-          />
-        </Field>
-      </div>
     </div>
   );
 }
@@ -149,9 +123,7 @@ function MenuRow({
         >
           <span className="min-w-0 flex-1">
             <span className="block truncate font-medium">{item.name}</span>
-            <span className="block truncate text-xs text-muted">
-              {[item.price_text, item.duration_text, item.revision_text].filter(Boolean).join(" · ") || "가격 · 기간 미입력"}
-            </span>
+            {item.description && <span className="block truncate text-xs text-muted">{item.description}</span>}
           </span>
           <ChevronDown className={cn("size-4 shrink-0 text-muted transition", open && "rotate-180")} />
         </button>
@@ -198,9 +170,6 @@ function NewMenuItem({ category, onCreated }: { category: Category; onCreated: (
     category,
     name: "",
     description: "",
-    price_text: "",
-    duration_text: "",
-    revision_text: "",
     is_open: true,
   };
   const [open, setOpen] = useState(false);

@@ -83,7 +83,7 @@ export default async function HomePage() {
 
       {/* 커미션 바로가기 */}
       <section>
-        <SectionHeading title="커미션" description="영상과 개발, 두 가지 작업을 받고 있어요." href="/commission" linkLabel="메뉴판 보기" />
+        <SectionHeading title="커미션" description="영상과 개발, 두 가지 작업을 받고 있어요." href="/commission" linkLabel="자세히 보기" />
         <div className="grid gap-4 md:grid-cols-2">
           {(["video", "dev"] as Category[]).map((category) => {
             const items = menu.filter((m) => m.category === category);
