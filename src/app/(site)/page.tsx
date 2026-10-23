@@ -24,7 +24,7 @@ export default async function HomePage() {
     <div className="space-y-20 sm:space-y-28">
       {/* 프로필 */}
       <section className="pt-4 sm:pt-10">
-        <div className="flex flex-col gap-8 sm:flex-row sm:items-center sm:gap-10">
+        <div className="flex flex-col items-center gap-6 text-center sm:flex-row sm:items-center sm:gap-10 sm:text-left">
           <Reveal>
             <div className="relative size-28 shrink-0 overflow-hidden rounded-full border-4 border-card bg-soft shadow-md sm:size-36">
               {profile.avatar_url && (
@@ -32,7 +32,7 @@ export default async function HomePage() {
               )}
             </div>
           </Reveal>
-          <div className="min-w-0 flex-1">
+          <div className="w-full min-w-0 flex-1">
             <Reveal delay={100}>
               {profile.nickname && <p className="font-semibold text-accent">{profile.nickname}</p>}
               <h1 className="mt-1 text-4xl font-bold tracking-tight sm:text-5xl">{profile.name || "이름을 입력해 주세요"}</h1>
@@ -40,13 +40,14 @@ export default async function HomePage() {
             <Reveal delay={200}>
               {profile.headline && <p className="mt-4 text-lg text-foreground/70 sm:text-xl">{profile.headline}</p>}
               {education && (
-                <p className="mt-3 inline-flex items-center gap-1.5 text-sm text-muted">
-                  <GraduationCap className="size-4" /> {education}
+                <p className="mt-3 text-sm text-muted">
+                  <GraduationCap className="mr-1.5 inline size-4 align-[-3px]" />
+                  {education}
                 </p>
               )}
             </Reveal>
             <Reveal delay={300}>
-              <SocialLinks links={profile.links} className="mt-6" />
+              <SocialLinks links={profile.links} className="mt-6 justify-center sm:justify-start" />
             </Reveal>
           </div>
         </div>
@@ -58,7 +59,7 @@ export default async function HomePage() {
           <Reveal>
             <SectionHeading title="소개" />
           </Reveal>
-          <div className="grid gap-5 lg:grid-cols-[1.3fr_1fr]">
+          <div className="grid grid-cols-1 gap-5 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)]">
             {profile.bio.trim() && (
               <Reveal className="h-full">
                 <div className="card h-full p-6 sm:p-8">
@@ -101,7 +102,7 @@ export default async function HomePage() {
               href={projects.length > HOME_LIMIT ? "/projects" : undefined}
             />
           </Reveal>
-          <div className="grid gap-5 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
             {homeProjects.map((p, i) => (
               <Reveal key={p.id} delay={(i % 2) * 100} className="h-full">
                 <ProjectCard project={p} />
@@ -121,7 +122,7 @@ export default async function HomePage() {
               href={works.length > HOME_LIMIT ? "/works" : undefined}
             />
           </Reveal>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {homeWorks.map((w, i) => (
               <Reveal key={w.id} delay={(i % 3) * 100} className="h-full">
                 <WorkCard work={w} />
@@ -133,7 +134,7 @@ export default async function HomePage() {
 
       {/* 자격증 · 활동 */}
       {hasHistory && (
-        <section className="grid gap-5 md:grid-cols-2">
+        <section className="grid grid-cols-1 gap-5 md:grid-cols-2">
           {profile.activities.length > 0 && (
             <Reveal className={profile.certifications.length ? "h-full" : "md:col-span-2"}>
               <div className="card h-full p-6 sm:p-8">
@@ -179,12 +180,16 @@ export default async function HomePage() {
 
       {/* 문의 */}
       <Reveal>
-        <section id="contact" className="card relative scroll-mt-24 overflow-hidden p-8 text-center sm:p-12">
+        <section id="contact" className="card relative scroll-mt-24 overflow-hidden px-5 py-8 text-center sm:p-12">
           <div aria-hidden className="pointer-events-none absolute -top-20 left-1/2 size-72 -translate-x-1/2 rounded-full bg-accent-soft blur-3xl" />
           <div className="relative">
             <h2 className="text-2xl font-bold tracking-tight">문의</h2>
             <p className="mt-2 text-foreground/70">영상 편집 · 개발 작업 문의는 언제든 편하게 연락 주세요.</p>
-            <ContactButtons links={profile.links} size="lg" className="mt-6 justify-center" />
+            <ContactButtons
+              links={profile.links}
+              size="lg"
+              className="mx-auto mt-6 max-w-xs flex-col sm:max-w-none sm:flex-row sm:justify-center"
+            />
           </div>
         </section>
       </Reveal>

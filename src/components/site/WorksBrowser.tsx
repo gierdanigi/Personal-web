@@ -8,7 +8,7 @@ import { Reveal } from "./Reveal";
 
 export function WorkGrid({ works }: { works: WorkWithMenu[] }) {
   return (
-    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {works.map((w, i) => (
         <Reveal key={w.id} delay={(i % 3) * 90} className="h-full">
           <WorkCard work={w} />

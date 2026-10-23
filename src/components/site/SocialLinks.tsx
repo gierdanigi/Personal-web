@@ -53,7 +53,7 @@ export function ContactButtons({
           key={`${link.key}-${i}`}
           link={link}
           className={cn(
-            "inline-flex items-center gap-2 rounded-xl font-semibold transition",
+            "inline-flex items-center justify-center gap-2 rounded-xl font-semibold transition",
             sizeClass,
             link.key === "openchat"
               ? "bg-[#FEE500] text-[#191600] hover:brightness-95"

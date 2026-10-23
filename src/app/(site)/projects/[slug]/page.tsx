@@ -57,7 +57,7 @@ async function ProjectDetail({ params }: Pick<PageProps<"/projects/[slug]">, "pa
           {project.summary && <p className="mt-3 text-lg text-foreground/70">{project.summary}</p>}
 
           {meta.length > 0 && (
-            <dl className="card mt-6 grid gap-4 p-5 sm:grid-cols-3">
+            <dl className="card mt-6 grid grid-cols-1 gap-4 p-5 sm:grid-cols-3">
               {meta.map(({ icon: Icon, label, value }) => (
                 <div key={label}>
                   <dt className="flex items-center gap-1.5 text-xs font-medium text-muted">

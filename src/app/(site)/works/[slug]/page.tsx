@@ -81,7 +81,7 @@ async function WorkDetail({ params }: Pick<PageProps<"/works/[slug]">, "params">
           )}
         </div>
 
-        <div className="mt-8 grid gap-6 md:grid-cols-[1fr_16rem]">
+        <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-[minmax(0,1fr)_16rem]">
           <div className="min-w-0">
             {work.description.trim() ? (
               <div className="card p-6 sm:p-8">

@@ -9,7 +9,7 @@ export async function Footer() {
 
   return (
     <footer className="mt-20 border-t border-line bg-card">
-      <div className="mx-auto grid max-w-5xl gap-8 px-4 py-10 sm:px-6 md:grid-cols-[1fr_auto]">
+      <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 px-4 py-10 sm:px-6 md:grid-cols-[minmax(0,1fr)_auto]">
         <div>
           <p className="text-lg font-bold">{siteName}</p>
           {profile.headline && <p className="mt-1 text-sm text-muted">{profile.headline}</p>}

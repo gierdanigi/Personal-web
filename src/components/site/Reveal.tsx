@@ -37,7 +37,7 @@ export function Reveal({
       ref={ref}
       data-reveal={shown ? "in" : ""}
       style={delay ? { transitionDelay: `${delay}ms` } : undefined}
-      className={cn("reveal", className)}
+      className={cn("reveal min-w-0", className)}
     >
       {children}
     </div>
