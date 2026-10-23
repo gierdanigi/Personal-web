@@ -1,26 +1,78 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
+/* 디자인: 밝고 깔끔한 카드형 */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
+  --background: #f6f7f9;
+  --foreground: #16181d;
+  --card: #ffffff;
+  --muted: #6b7280;
+  --line: #e7e9ee;
+  --soft: #eef0f4;
+  --accent: #4f5bd5;
+  --accent-soft: #eef0ff;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-card: var(--card);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-soft: var(--soft);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --font-sans: var(--font-pretendard), system-ui, -apple-system, sans-serif;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+@utility card {
+  @apply rounded-2xl border border-line bg-card shadow-[0_1px_2px_rgba(16,24,40,0.04)];
+}
+
+@utility card-hover {
+  @apply transition hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(16,24,40,0.08)];
+}
+
+@utility tag {
+  @apply inline-flex items-center rounded-full bg-soft px-2.5 py-0.5 text-xs font-medium text-foreground/80;
+}
+
+@utility btn {
+  @apply inline-flex items-center justify-center gap-1.5 rounded-xl px-4 py-2 text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-50;
+}
+
+@utility btn-primary {
+  @apply btn bg-accent text-white hover:bg-accent/90;
+}
+
+@utility btn-outline {
+  @apply btn border border-line bg-card hover:bg-soft;
+}
+
+@utility btn-ghost {
+  @apply btn hover:bg-soft;
+}
+
+@utility btn-danger {
+  @apply btn border border-red-200 bg-card text-red-600 hover:bg-red-50;
+}
+
+@utility input {
+  @apply w-full rounded-xl border border-line bg-card px-3 py-2 text-sm outline-none transition placeholder:text-muted/70 focus:border-accent focus:ring-2 focus:ring-accent/15;
+}
+
+@utility label {
+  @apply mb-1.5 block text-sm font-medium text-foreground/80;
+}
+
+@utility section-title {
+  @apply text-xl font-bold tracking-tight sm:text-2xl;
 }
